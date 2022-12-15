@@ -5,8 +5,6 @@ const formData = {};
 
 const refs = {
   form: document.querySelector('.feedback-form'),
-  input: document.querySelector('.feedback-form input'),
-  textarea: document.querySelector('.feedback-form textarea'),
 };
 
 refs.form.addEventListener('submit', onFormSubmit);
@@ -26,11 +24,17 @@ function onFormSubmit(e) {
   localStorage.removeItem(USER_KEY);
 }
 
-function populateMessageOutput() {
-  const savedMessage = JSON.parse(localStorage.getItem(USER_KEY));
+function getSaveInputs(key) {
+  return JSON.parse(localStorage.getItem(key));
+}
 
-  if (savedMessage) {
-    refs.input.value = savedMessage.email || '';
-    refs.textarea.value = savedMessage.message || '';
+function populateMessageOutput() {
+  const formData = getSaveInputs(USER_KEY);
+  if (!formData) {
+    return;
+  }
+
+  for (const key in formData) {
+    refs.form.elements[key].value = formData[key];
   }
 }
