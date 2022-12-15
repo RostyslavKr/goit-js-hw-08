@@ -7,14 +7,14 @@ const refs = {
   form: document.querySelector('.feedback-form'),
 };
 
-refs.form.addEventListener('submit', onFormSubmit);
-
-refs.form.addEventListener('input', throttle(onFormInput, 500));
-
 populateMessageOutput();
+
+refs.form.addEventListener('submit', onFormSubmit);
+refs.form.addEventListener('input', throttle(onFormInput, 500));
 
 function onFormInput(e) {
   formData[e.target.name] = e.target.value;
+  console.log((formData[e.target.name] = e.target.value));
   localStorage.setItem(USER_KEY, JSON.stringify(formData));
 }
 
