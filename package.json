@@ -1,15 +1,15 @@
 {
   "name": "goit-js-hw-08",
   "version": "2.0.0",
-  "description": "This project was created with Parcel. For familiarization and setting additional features [refer to documentation](https://parceljs.org/).",
-  "homepage": "https://rostyslavkr.github.io/goit-js-hw-08/",
+  "description": "",
+  "homepage": "https://goitacademy.github.io/goit-js-hw-08",
   "scripts": {
     "start": "parcel src/*.html",
     "build": "parcel build src/*.html --public-url /goit-js-hw-08/"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/RostyslavKr/goit-js-hw-08"
+    "url": "git+https://github.com/goitacademy/parcel-project-template.git"
   },
   "keywords": [],
   "author": "Alexander Repeta <alexander.repeta@gmail.com>",
@@ -30,7 +30,4 @@
     "posthtml-include": "^1.7.4"
   },
   "browserslist": "> 0.5%, last 2 versions, not dead"
-  
-  
-
 }
