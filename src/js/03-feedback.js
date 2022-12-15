@@ -25,7 +25,7 @@ function onFormInput(e) {
 function onEmailInput(evt) {
   const email = JSON.stringify(formData[evt.target.name]);
 
-  localStorage.setItem('Email', email);
+  localStorage.setItem(USER_KEY, email);
 }
 
 function onMessageInput(evt) {
@@ -40,9 +40,9 @@ function onFormSubmit(e) {
   localStorage.removeItem(USER_KEY);
 }
 
-function getSaveInputs(key) {
-  return JSON.parse(localStorage.getItem(key));
-}
+// function getSaveInputs(key) {
+//   return JSON.parse(localStorage.getItem(key));
+// }
 
 function populateMessageOutput() {
   const savedMessage = localStorage.getItem(USER_KEY);
