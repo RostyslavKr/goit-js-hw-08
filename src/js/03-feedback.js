@@ -11,6 +11,7 @@ refs.form.addEventListener('input', throttle(onFormInput, 500));
 window.addEventListener('load', updateOutputOnload);
 
 function onFormInput(e) {
+  e.preventDefault();
   const message = refs.form.elements.message.value;
   const email = refs.form.elements.email.value;
   localStorage.setItem(USER_KEY, JSON.stringify({ message, email }));
