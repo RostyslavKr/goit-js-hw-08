@@ -6,38 +6,33 @@ const refs = {
   form: document.querySelector('.feedback-form'),
 };
 
-populateMessageOutput();
-const formData = {
-  email: '',
-  message: '',
-};
 refs.form.addEventListener('submit', onFormSubmit);
 refs.form.addEventListener('input', throttle(onFormInput, 500));
+window.addEventListener('load', updateOutputOnload);
 
 function onFormInput(e) {
-  formData[e.target.name] = e.target.value;
-  console.log((formData[e.target.name] = e.target.value));
-  localStorage.setItem(USER_KEY, JSON.stringify(formData));
+  const message = refs.form.elements.message.value;
+  const email = refs.form.elements.email.value;
+  localStorage.setItem(USER_KEY, JSON.stringify({ message, email }));
 }
 
+function updateOutputOnload(e) {
+  e.preventDefault();
+  const OutputText = JSON.parse(localStorage.getItem(USER_KEY)) || {
+    email: '',
+    message: '',
+  };
+  const { email, message } = OutputText;
+  refs.form.elements.email.value = email;
+  refs.form.elements.message.value = message;
+}
 function onFormSubmit(e) {
   e.preventDefault();
-  e.currentTarget.reset();
+  const {
+    elements: { email, message },
+  } = e.currentTarget;
+
+  console.log({ email: email.value, message: message.value });
+
   localStorage.removeItem(USER_KEY);
-}
-
-function getSaveInputs(key) {
-  return JSON.parse(localStorage.getItem(key));
-}
-
-function populateMessageOutput() {
-  if (savedMessage) {
-    refs.message.value = JSON.parse(savedMessage);
-    formData.message = refs.message.value;
-  }
-
-  if (savedEmail) {
-    refs.email.value = JSON.parse(savedEmail);
-    formData.email = refs.email.value;
-  }
 }
