@@ -36,4 +36,6 @@ function onFormSubmit(e) {
   console.log({ email: email.value, message: message.value });
 
   localStorage.removeItem(USER_KEY);
+
+  refs.form.reset();
 }
