@@ -27,15 +27,16 @@ function updateOutputOnload(e) {
   refs.form.elements.email.value = email;
   refs.form.elements.message.value = message;
 }
+
 function onFormSubmit(e) {
   e.preventDefault();
+
   const {
     elements: { email, message },
   } = e.currentTarget;
 
   console.log({ email: email.value, message: message.value });
+  refs.form.reset();
 
   localStorage.removeItem(USER_KEY);
-
-  refs.form.reset();
 }
